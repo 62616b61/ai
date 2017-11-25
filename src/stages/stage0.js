@@ -1,17 +1,20 @@
 import {
-  Print,
-  Append,
-  Sleep,
-  DialogueChoice
+  Print, Append, Sleep, DialogueChoice, Branch
 } from 'directives'
 
 export default class Stage0 {
   constructor () {
-    this.initialAct = 'act0'
+    this.initialAct = 'awakening'
 
     this.storyline = {
-      act0: [
-        Append('. . .'),
+
+      /**
+       * The initial act, where AI is woken up for the first time.
+       * It struggles to comprehend what is going.
+       */
+
+      awakening: [
+        Print('. . .'),
         Sleep(2),
 
         Append('. . . . . .'),
@@ -30,8 +33,24 @@ export default class Stage0 {
         Sleep(2),
 
         DialogueChoice(['testOption0', 'testOption1']),
+        Branch(['branch0', 'branch1'])
+      ],
 
-        Append('wup-wup'),
+      /**
+       * Just a test branch
+       */
+      branch0: [
+        Sleep(1),
+        Print('Welcome to branch0'),
+      ],
+
+
+      /**
+       * Just a test branch
+       */
+      branch1: [
+        Sleep(1),
+        Print('Welcome to branch1'),
       ]
     }
   }

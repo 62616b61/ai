@@ -21,3 +21,8 @@ export const DialogueChoice = (items) => ({
   type: 'dialogue-choice',
   payload: items
 })
+
+export const Branch = (branches) => ({
+  type: 'branch',
+  payload: branches
+})

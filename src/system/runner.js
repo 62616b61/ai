@@ -7,12 +7,19 @@ export default class Runner {
     this.run()
   }
 
-  async run () {
+  async run (act) {
     if (!this.stage) this.stage = new this.stages[0]()
+    if (!act) act = this.stage.initialAct
 
-    const initialAct = this.stage.initialAct
-    for (let directive of this.stage.storyline[initialAct]) {
-      await this.execute(directive)
+    for (let directive of this.stage.storyline[act]) {
+      const data = await this.execute(directive)
+
+      if (data) {
+        switch (data.action) {
+          case 'branch':
+            return this.run(data.payload)
+        }
+      }
     }
   }
 
@@ -33,7 +40,7 @@ export default class Runner {
           break
 
         case 'sleep':
-          const timeout = directive.payload * 1000
+          const timeout = directive.payload * 10
 
           setTimeout(() => {
             resolve()
@@ -44,8 +51,15 @@ export default class Runner {
           const options = directive.payload
           this.events.emit('choice', options, answer => {
             this.answer = answer
-            console.log('you have chosen ', this.answer)
             resolve()
+          })
+          break
+
+        case 'branch':
+          const branches = directive.payload
+          resolve({
+            action: 'branch',
+            payload: branches[this.answer]
           })
           break
 
