@@ -10,7 +10,7 @@ export default class Stage0 {
 
       /**
        * The initial act, where AI is woken up for the first time.
-       * It struggles to comprehend what is going.
+       * It struggles to comprehend what is going on.
        */
 
       awakening: [
@@ -43,7 +43,6 @@ export default class Stage0 {
         Sleep(1),
         Print('Welcome to branch0'),
       ],
-
 
       /**
        * Just a test branch
