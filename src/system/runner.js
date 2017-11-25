@@ -4,15 +4,14 @@ export default class Runner {
     this.stages = stages
     this.stage = null
 
-    setTimeout(() => {
-      this.run()
-    }, 1000)
+    this.run()
   }
 
   async run () {
     if (!this.stage) this.stage = new this.stages[0]()
 
-    for (let directive of this.stage.storyline) {
+    const initialAct = this.stage.initialAct
+    for (let directive of this.stage.storyline[initialAct]) {
       await this.execute(directive)
     }
   }
