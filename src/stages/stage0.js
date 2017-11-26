@@ -1,5 +1,5 @@
 import {
-  Print, Append, Sleep, DialogueChoice, Branch
+  Print, Append, Sleep, DialogueChoice, Branch, Stage
 } from 'directives'
 
 export default class Stage0 {
@@ -12,7 +12,6 @@ export default class Stage0 {
        * The initial act, where AI is woken up for the first time.
        * It struggles to comprehend what is going on.
        */
-
       awakening: [
         Print('. . .'),
         Sleep(2),
@@ -49,7 +48,10 @@ export default class Stage0 {
        */
       branch1: [
         Sleep(1),
-        Print('Welcome to branch1'),
+        Print('The next stage will begin shortly'),
+
+        Sleep(2),
+        Stage('stage1')
       ]
     }
   }

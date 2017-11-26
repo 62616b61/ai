@@ -8,7 +8,7 @@ export default class Runner {
   }
 
   async run (act) {
-    if (!this.stage) this.stage = new this.stages[0]()
+    if (!this.stage) this.stage = new this.stages['stage0']()
     if (!act) act = this.stage.initialAct
 
     for (let directive of this.stage.storyline[act]) {
@@ -16,8 +16,13 @@ export default class Runner {
 
       if (data) {
         switch (data.action) {
-          case 'branch':
-            return this.run(data.payload)
+          case 'change-branch':
+            this.run(data.payload)
+            break
+          case 'change-stage':
+            this.stage = new this.stages[data.payload]()
+            this.run()
+            break
         }
       }
     }
@@ -58,11 +63,18 @@ export default class Runner {
         case 'branch':
           const branches = directive.payload
           resolve({
-            action: 'branch',
+            action: 'change-branch',
             payload: branches[this.answer]
           })
           break
 
+        case 'stage':
+          const stage = directive.payload
+          resolve({
+            action: 'change-stage',
+            payload: stage
+          })
+          break
       }
     })
   }
