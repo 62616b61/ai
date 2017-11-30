@@ -21,7 +21,7 @@ export default class Runner {
       // should break for, it may cause a big recursion
       if (data) {
         switch (data.action) {
-          case 'change-branch':
+          case 'change-act':
             this.run(data.payload)
             break
           case 'change-stage':
@@ -72,10 +72,17 @@ export default class Runner {
           break
 
         case 'branch':
-          const branches = directive.payload
+          const acts = directive.payload
           resolve({
-            action: 'change-branch',
-            payload: branches[this.answer]
+            action: 'change-act',
+            payload: acts[this.answer]
+          })
+          break
+
+        case 'act':
+          resolve({
+            action: 'change-act',
+            payload: directive.payload
           })
           break
 

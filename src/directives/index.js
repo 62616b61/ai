@@ -27,6 +27,11 @@ export const Branch = (branches) => ({
   payload: branches
 })
 
+export const Act = (act) => ({
+  type: 'act',
+  payload: act
+})
+
 export const Stage = (stage) => ({
   type: 'stage',
   payload: stage

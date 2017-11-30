@@ -5,7 +5,6 @@ module.exports = class Screen {
   constructor (events) {
     this.events = events
 
-
     this.setup()
     this.subscribe()
   }
@@ -39,14 +38,11 @@ module.exports = class Screen {
     })
 
     this.screen.append(this.wrapper)
-
     this.layouts = new Layouts()
   }
 
   applyLayout (layout) {
     this.layout = this.layouts.get(layout)
-    console.log(Object.keys(this.layout))
-
     Object.keys(this.layout).forEach(box => {
       this.wrapper.append(this.layout[box])
     })
@@ -74,9 +70,7 @@ module.exports = class Screen {
     list.focus()
 
     list.on('select', answer => {
-      list.hide()
-      this.screen.render()
-
+      list.clearItems()
       callback(findIndex(answer.content))
     })
 

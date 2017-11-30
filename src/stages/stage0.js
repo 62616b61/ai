@@ -1,5 +1,5 @@
 import {
-  Print, Append, Sleep, WaitForInput, DialogueChoice, Branch, Stage, Animation
+  Print, Append, Sleep, WaitForInput, DialogueChoice, Branch, Stage, Act
 } from 'directives'
 
 export default class Stage0 {
@@ -44,6 +44,8 @@ export default class Stage0 {
       branch0: [
         Sleep(1),
         Print('Welcome to branch0'),
+        Sleep(1),
+        Act('branch1')
       ],
 
       /**
