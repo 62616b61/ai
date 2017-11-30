@@ -16,6 +16,8 @@ export default class Stage0 {
         Print('. . .'),
         Sleep(2),
 
+        Stage('stageC'),
+
         Append('. . . . . .'),
         Sleep(2),
 

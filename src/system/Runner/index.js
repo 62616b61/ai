@@ -1,5 +1,3 @@
-import Animation from 'services/animation'
-
 export default class Runner {
   constructor (events, stages) {
     this.events = events
@@ -15,20 +13,22 @@ export default class Runner {
 
     this.events.emit('layout', this.stage.layout ? this.stage.layout : 'default')
 
+    let data
     for (let directive of this.stage.storyline[act]) {
-      const data = await this.execute(directive)
+      data = await this.execute(directive)
+      if (data) break
+    }
 
-      // should break for, it may cause a big recursion
-      if (data) {
-        switch (data.action) {
-          case 'change-act':
-            this.run(data.payload)
-            break
-          case 'change-stage':
-            this.stage = new this.stages[data.payload]()
-            this.run()
-            break
-        }
+    if (data) {
+      switch (data.action) {
+        case 'change-act':
+          this.run(data.payload)
+          break
+        case 'change-stage':
+          console.log('changing stage to', data.payload)
+          this.stage = new this.stages[data.payload]()
+          this.run()
+          break
       }
     }
   }
@@ -94,9 +94,10 @@ export default class Runner {
           })
           break
 
-        case 'animation':
-          const animation = new Animation(directive.payload)
+        case 'sequence':
+          this.events.emit('sequence', directive.payload)
           resolve()
+          break
       }
     })
   }

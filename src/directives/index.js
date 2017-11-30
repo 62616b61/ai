@@ -36,3 +36,8 @@ export const Stage = (stage) => ({
   type: 'stage',
   payload: stage
 })
+
+export const Sequence = (sequence) => ({
+  type: 'sequence',
+  payload: sequence
+})
