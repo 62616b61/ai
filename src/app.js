@@ -1,8 +1,8 @@
 import EventEmitter from 'events'
 
 import stages from './stages'
-import Runner from './system/runner'
-import Screen from './system/screen'
+import Runner from './system/Runner'
+import Screen from './system/Screen'
 
 export default class App {
   constructor () {
