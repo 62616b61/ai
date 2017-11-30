@@ -57,6 +57,12 @@ export default class Runner {
           }, timeout)
           break
 
+        case 'wait-for-input':
+          this.events.emit('choice', ['{center}...{/center}'], () => {
+            resolve()
+          })
+          break
+
         case 'dialogue-choice':
           const options = directive.payload
           this.events.emit('choice', options, answer => {

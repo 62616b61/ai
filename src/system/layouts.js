@@ -28,6 +28,7 @@ export default class Layouts {
           width: 50,
           height: 10,
           keys: true,
+          tags: true,
           border: {
             type: 'line'
           },

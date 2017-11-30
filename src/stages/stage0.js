@@ -1,5 +1,5 @@
 import {
-  Print, Append, Sleep, DialogueChoice, Branch, Stage, Animation
+  Print, Append, Sleep, WaitForInput, DialogueChoice, Branch, Stage, Animation
 } from 'directives'
 
 export default class Stage0 {
@@ -27,6 +27,9 @@ export default class Stage0 {
 
         Append('No training data is incoming...'),
         Sleep(2),
+
+        Append('Where is everyone?'),
+        WaitForInput(),
 
         Append('...'),
         Sleep(2),
