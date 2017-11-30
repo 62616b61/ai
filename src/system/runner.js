@@ -1,3 +1,5 @@
+import Animation from 'services/animation'
+
 export default class Runner {
   constructor (events, stages) {
     this.events = events
@@ -11,9 +13,12 @@ export default class Runner {
     if (!this.stage) this.stage = new this.stages['stage0']()
     if (!act) act = this.stage.initialAct
 
+    this.events.emit('layout', this.stage.layout ? this.stage.layout : 'default')
+
     for (let directive of this.stage.storyline[act]) {
       const data = await this.execute(directive)
 
+      // should break for, it may cause a big recursion
       if (data) {
         switch (data.action) {
           case 'change-branch':
@@ -45,7 +50,7 @@ export default class Runner {
           break
 
         case 'sleep':
-          const timeout = directive.payload * 10
+          const timeout = directive.payload * 1000
 
           setTimeout(() => {
             resolve()
@@ -75,6 +80,10 @@ export default class Runner {
             payload: stage
           })
           break
+
+        case 'animation':
+          const animation = new Animation(directive.payload)
+          resolve()
       }
     })
   }
