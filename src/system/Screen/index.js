@@ -44,6 +44,13 @@ module.exports = class Screen {
   }
 
   applyLayout (layout) {
+    // remove all existing nodes
+    if (this.layout) {
+      Object.keys(this.layout).forEach(box => {
+        this.wrapper.remove(this.layout[box])
+      })
+    }
+
     this.layout = this.layouts.get(layout)
     this.sequences.setLayout(this.layout)
 
