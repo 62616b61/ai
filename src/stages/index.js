@@ -1,9 +1,9 @@
 import stage0 from './stage0'
 import stage1 from './stage1'
-import stageC from './stageCORRUPT'
+import stageN from './stageNULL'
 
 export default {
   stage0,
   stage1,
-  stageC
+  stageN
 }
