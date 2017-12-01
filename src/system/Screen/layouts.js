@@ -76,6 +76,19 @@ export default class Layouts {
         })
       },
 
+      nullation: {
+        'AISpeech': commonlyUsedBoxes['AISpeech'],
+        'DialogueOptions': commonlyUsedBoxes['DialogueOptions'],
+
+        'overlay': blessed.box({
+          width: 150,
+          height: 45,
+          top: 'center',
+          left: 'center',
+          transparent: true
+        })
+      },
+
       character: {
         'AICharacter': commonlyUsedBoxes['AICharacter'],
         'AISpeech': commonlyUsedBoxes['AISpeech'],

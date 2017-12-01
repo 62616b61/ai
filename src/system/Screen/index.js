@@ -1,6 +1,6 @@
 import blessed from 'blessed'
 import Layouts from './layouts'
-import Sequences from './sequences'
+import sequences from './sequences'
 
 module.exports = class Screen {
   constructor (events) {
@@ -40,7 +40,6 @@ module.exports = class Screen {
 
     this.screen.append(this.wrapper)
     this.layouts = new Layouts()
-    this.sequences = new Sequences(this.screen, this.layout)
   }
 
   applyLayout (layout) {
@@ -52,7 +51,6 @@ module.exports = class Screen {
     }
 
     this.layout = this.layouts.get(layout)
-    this.sequences.setLayout(this.layout)
 
     Object.keys(this.layout).forEach(box => {
       this.wrapper.append(this.layout[box])
@@ -89,7 +87,8 @@ module.exports = class Screen {
   }
 
   sequence (sequence) {
-    this.sequences.begin(sequence)
+    if (sequences[sequence]) sequences[sequence](this.screen, this.layout)
+    else throw new Error('Unknown sequence!')
   }
 
   subscribe () {
