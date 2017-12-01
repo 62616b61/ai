@@ -25,7 +25,6 @@ export default class Runner {
           this.run(data.payload)
           break
         case 'change-stage':
-          console.log('changing stage to', data.payload)
           this.stage = new this.stages[data.payload]()
           this.run()
           break
