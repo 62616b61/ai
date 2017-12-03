@@ -1,5 +1,5 @@
 import blessed from 'blessed'
-import Layouts from './layouts'
+import layouts from './layouts'
 import sequences from './sequences'
 
 module.exports = class Screen {
@@ -39,7 +39,6 @@ module.exports = class Screen {
     })
 
     this.screen.append(this.wrapper)
-    this.layouts = new Layouts()
   }
 
   applyLayout (layout) {
@@ -50,7 +49,7 @@ module.exports = class Screen {
       })
     }
 
-    this.layout = this.layouts.get(layout)
+    this.layout = layouts[layout]()
 
     Object.keys(this.layout).forEach(box => {
       this.wrapper.append(this.layout[box])
