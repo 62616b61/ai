@@ -36,6 +36,22 @@ export default function () {
       }
     }),
 
+    'EvilAISpeech': blessed.box({
+      width: 35,
+      height: 4,
+      bottom: 4,
+      right: -17,
+      border: {
+        type: 'line'
+      },
+      style: {
+        fg: 'white',
+        border: {
+          fg: '#f0f0f0'
+        }
+      }
+    }),
+
     'DialogueOptions': blessed.list({
       bottom: 3,
       left: 'center',

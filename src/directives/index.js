@@ -1,11 +1,11 @@
-export const Print = (text) => ({
+export const Print = (text, box) => ({
   type: 'print',
-  payload: text
+  payload: { text, box }
 })
 
-export const Append = (text) => ({
+export const Append = (text, box) => ({
   type: 'append',
-  payload: text
+  payload: { text, box }
 })
 
 export const Sleep = (seconds) => ({
@@ -40,4 +40,9 @@ export const Stage = (stage) => ({
 export const Sequence = (sequence) => ({
   type: 'sequence',
   payload: sequence
+})
+
+export const Animation = (animation, box) => ({
+  type: 'animation',
+  payload: { animation, box }
 })

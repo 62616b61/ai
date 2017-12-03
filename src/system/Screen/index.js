@@ -2,6 +2,9 @@ import blessed from 'blessed'
 import layouts from './layouts'
 import sequences from './sequences'
 
+import animations from './animations'
+import { animate } from './animations/animator'
+
 module.exports = class Screen {
   constructor (events) {
     this.events = events
@@ -41,30 +44,15 @@ module.exports = class Screen {
     this.screen.append(this.wrapper)
   }
 
-  applyLayout (layout) {
-    // remove all existing nodes
-    if (this.layout) {
-      Object.keys(this.layout).forEach(box => {
-        this.wrapper.remove(this.layout[box])
-      })
-    }
-
-    this.layout = layouts[layout]()
-
-    Object.keys(this.layout).forEach(box => {
-      this.wrapper.append(this.layout[box])
-    })
-
+  print (text, box) {
+    if (box) this.layout[box].setContent(text)
+    else this.layout['AISpeech'].setContent(text)
     this.screen.render()
   }
 
-  print (text) {
-    this.layout['AISpeech'].setContent(text)
-    this.screen.render()
-  }
-
-  append (text) {
-    this.layout['AISpeech'].pushLine(text)
+  append (text, box) {
+    if (box) this.layout[box].pushLine(text)
+    else this.layout['AISpeech'].pushLine(text)
     this.screen.render()
   }
 
@@ -85,18 +73,43 @@ module.exports = class Screen {
     this.screen.render()
   }
 
-  sequence (sequence) {
+  applyLayout (layout) {
+    // remove all existing nodes
+    if (this.layout) {
+      Object.keys(this.layout).forEach(box => {
+        this.wrapper.remove(this.layout[box])
+      })
+    }
+
+    this.layout = layouts[layout]()
+
+    Object.keys(this.layout).forEach(box => {
+      this.wrapper.append(this.layout[box])
+    })
+
+    this.screen.render()
+  }
+
+  startSequence (sequence) {
     if (sequences[sequence]) sequences[sequence](this.screen, this.layout)
     else throw new Error('Unknown sequence!')
+  }
+
+  startAnimation (animation, box) {
+    animate(animations[animation], (sprite) => {
+      this.layout[box].setContent(sprite)
+      this.screen.render()
+    })
   }
 
   subscribe () {
     const e = this.events
 
-    e.on('print', text => this.print(text))
-    e.on('append', text => this.append(text))
+    e.on('print', (text, box) => this.print(text, box))
+    e.on('append', (text, box) => this.append(text, box))
     e.on('choice', (items, callback) => this.choice(items, callback))
     e.on('layout', (layout) => this.applyLayout(layout))
-    e.on('sequence', (s) => this.sequence(s))
+    e.on('sequence', (s) => this.startSequence(s))
+    e.on('animation', (a, b) => this.startAnimation(a, b))
   }
 }

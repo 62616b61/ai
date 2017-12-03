@@ -39,12 +39,20 @@ export default class Runner {
       switch (directive.type) {
 
         case 'print':
-          this.events.emit('print', directive.payload)
+          this.events.emit(
+            'print',
+            directive.payload.text,
+            directive.payload.box
+          )
           resolve()
           break
 
         case 'append':
-          this.events.emit('append', directive.payload)
+          this.events.emit(
+            'append',
+            directive.payload.text,
+            directive.payload.box
+          )
           resolve()
           break
 
@@ -97,6 +105,13 @@ export default class Runner {
           this.events.emit('sequence', directive.payload)
           resolve()
           break
+
+        case 'animation':
+          const {animation, box} = directive.payload
+          this.events.emit('animation', animation, box)
+          resolve()
+          break
+
       }
     })
   }
