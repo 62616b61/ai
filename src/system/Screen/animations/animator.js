@@ -1,13 +1,21 @@
-function nextFrame (animationArray, callback, i) {
-  const sprite = animationArray[i]
+export default class Animator {
+  constructor (animation, callback) {
+    this.animation = animation
+    this.callback = callback
 
-  i = (animationArray.length - 1 === i) ? 0: i + 1
-  setTimeout(() => {
-    callback(sprite)
-    nextFrame(animationArray, callback, i);
-  }, 200)
-}
+    this.start()
+  }
 
-export function animate (animationArray, callback) {
-  nextFrame(animationArray, callback, 0)
+  start () {
+    let i = 0
+    this.interval = setInterval(() => {
+      i  = (this.animation.length - 1 === i) ? 0: i + 1
+      const sprite = this.animation[i]
+      this.callback(sprite)
+    }, 200)
+  }
+
+  stop () {
+    clearInterval(this.interval)
+  }
 }

@@ -11,6 +11,7 @@ export default class Runner {
     if (!this.stage) this.stage = new this.stages['stage0']()
     if (!act) act = this.stage.initialAct
 
+    this.events.emit('reset')
     this.events.emit('layout', this.stage.layout ? this.stage.layout : 'basic')
 
     let data

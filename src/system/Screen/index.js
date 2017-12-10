@@ -3,11 +3,13 @@ import layouts from './layouts'
 import sequences from './sequences'
 
 import animations from './animations'
-import { animate } from './animations/animator'
+import Animator from './animations/animator'
 
 module.exports = class Screen {
   constructor (events) {
     this.events = events
+
+    this.animations = []
 
     this.setup()
     this.subscribe()
@@ -42,6 +44,14 @@ module.exports = class Screen {
     })
 
     this.screen.append(this.wrapper)
+  }
+
+  reset () {
+    console.log('RESETTIGN SCENES')
+    this.animations.forEach(animation => {
+      animation.stop()
+    })
+    this.animations = []
   }
 
   print (text, box) {
@@ -96,14 +106,17 @@ module.exports = class Screen {
   }
 
   startAnimation (animation, box) {
-    animate(animations[animation], (sprite) => {
+    const animator = new Animator(animations[animation], (sprite) => {
       this.layout[box].setContent(sprite)
       this.screen.render()
     })
+    this.animations.push(animator)
   }
 
   subscribe () {
     const e = this.events
+
+    e.on('reset', () => this.reset())
 
     e.on('print', (text, box) => this.print(text, box))
     e.on('append', (text, box) => this.append(text, box))
