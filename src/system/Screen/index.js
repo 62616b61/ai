@@ -17,9 +17,8 @@ module.exports = class Screen {
 
   setup () {
     this.screen = blessed.screen({
-      title: 'TITLE',
       smartCSR: true,
-      atop: 10
+      terminal: 'linux'
     })
 
     this.screen.key(['escape', 'q', 'C-c'], function(ch, key) {
