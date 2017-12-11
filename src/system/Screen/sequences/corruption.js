@@ -55,8 +55,8 @@ export default function (screen, layout) {
   const width = overlay.width
   const height = overlay.height
 
-  const slowChunkLength = Math.ceil((width * height)/(50 * 10))
-  const fastChunkLength = Math.ceil((width * height)/(50 * 4))
+  const slowChunkLength = 15
+  const fastChunkLength = 30
 
   // generate random chunks of text
   const slowChunks = []
@@ -80,7 +80,7 @@ export default function (screen, layout) {
   let y = 0
   const interval = setInterval(() => {
     const chunks = hasCorrupted ? fastChunks : slowChunks
-    const chunk = pickRandomFrom(width - x > 10 ? chunks : characters)
+    const chunk = pickRandomFrom(chunks)
     accumulator += chunk
 
     overlay.setLine(y, accumulator)
@@ -100,5 +100,5 @@ export default function (screen, layout) {
       y = 0
       hasCorrupted = true
     }
-  })
+  }, 1)
 }
