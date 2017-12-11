@@ -37,7 +37,7 @@ function showMonster (layout) {
     const heightInterval = setInterval(() => {
       if (layout[part].height !== parts[part].height) layout[part].height ++
       else clearInterval(heightInterval)
-    }, 350)
+    }, 250)
   })
 
   setTimeout(() => {
@@ -56,7 +56,11 @@ export default function (screen, layout) {
   const height = overlay.height
 
   const slowChunkLength = 15
-  const fastChunkLength = 50
+  const fastChunkLength = 75
+
+  setTimeout(() => {
+    console.log(width, height)
+  }, 500)
 
   // generate random chunks of text
   const slowChunks = []

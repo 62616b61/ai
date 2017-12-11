@@ -29,7 +29,7 @@ module.exports = class Screen {
       top: 'center',
       left: 'center',
       width: 100,
-      height: 45,
+      height: 42,
       tags: true,
       border: {
         type: 'line'

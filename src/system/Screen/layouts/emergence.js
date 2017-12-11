@@ -8,7 +8,7 @@ export default function () {
     ...inherit,
     'overlay': blessed.box({
       width: 150,
-      height: 46,
+      height: 42,
       top: 'center',
       left: 'center',
       transparent: true
