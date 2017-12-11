@@ -58,10 +58,6 @@ export default function (screen, layout) {
   const slowChunkLength = 15
   const fastChunkLength = 75
 
-  setTimeout(() => {
-    console.log(width, height)
-  }, 500)
-
   // generate random chunks of text
   const slowChunks = []
   const fastChunks = []
