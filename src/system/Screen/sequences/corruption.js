@@ -56,7 +56,7 @@ export default function (screen, layout) {
   const height = overlay.height
 
   const slowChunkLength = 15
-  const fastChunkLength = 30
+  const fastChunkLength = 50
 
   // generate random chunks of text
   const slowChunks = []
