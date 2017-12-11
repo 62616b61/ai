@@ -1,5 +1,5 @@
-const possible = '?,@#$%&*[]/><|}{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-const pickRandom = () => possible[Math.floor(Math.random() * possible.length)]
+const characters = '?,@#$%&*[]/><|}{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+const pickRandomFrom = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
 function showMonster (layout) {
   let parts = [
@@ -38,7 +38,6 @@ function showMonster (layout) {
       if (layout[part].height !== parts[part].height) layout[part].height ++
       else clearInterval(heightInterval)
     }, 350)
-
   })
 
   setTimeout(() => {
@@ -50,37 +49,46 @@ export default function (screen, layout) {
   layout['EvilAISpeech'].hide()
   layout['EvilAISpeech'].setIndex(1000)
 
-  let multiplier = 7
   let hasCorrupted = false
 
   const overlay = layout['overlay']
-
   const width = overlay.width
   const height = overlay.height
 
-  let x = 0
-  let y = 0
+  const slowChunkLength = Math.ceil((width * height)/(50 * 10))
+  const fastChunkLength = Math.ceil((width * height)/(50 * 4))
+
+  // generate random chunks of text
+  const slowChunks = []
+  const fastChunks = []
+  for (let i = 0; i < 6; i++) {
+    const slowChunk = Array.from(
+      {length: slowChunkLength},
+      () => pickRandomFrom(characters)
+    ).join('')
+    const fastChunk = Array.from(
+      {length: fastChunkLength},
+      () => pickRandomFrom(characters)
+    ).join('')
+
+    slowChunks.push(slowChunk)
+    fastChunks.push(fastChunk)
+  }
 
   let accumulator = ''
-
-  const ln = Math.ceil((width * height)/(50 * multiplier))
+  let x = 0
+  let y = 0
   const interval = setInterval(() => {
-    const str = Array.from({
-      length: width - x > 10 ? ln : 1
-    }, pickRandom).join('')
+    const chunks = hasCorrupted ? fastChunks : slowChunks
+    const chunk = pickRandomFrom(width - x > 10 ? chunks : characters)
+    accumulator += chunk
 
-    accumulator += str
-
-    if (hasCorrupted) {
-      overlay.setLine(y, accumulator)
-      overlay.setLine(y + 1, accumulator.split( '' ).reverse( ).join( '' ))
-    } else {
-      overlay.setLine(y, accumulator)
-    }
+    overlay.setLine(y, accumulator)
+    if (hasCorrupted) overlay.setLine(y + 1, accumulator)
 
     screen.render()
 
-    x = x + str.length
+    x = x + chunk.length
     if (x >= width) {
       accumulator = ''
       x = 0
@@ -89,9 +97,7 @@ export default function (screen, layout) {
     if (y >= height) {
       if (!hasCorrupted) showMonster(layout)
 
-      //clearInterval(interval)
       y = 0
-      multiplier = 1
       hasCorrupted = true
     }
   })

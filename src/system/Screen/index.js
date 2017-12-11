@@ -46,7 +46,6 @@ module.exports = class Screen {
   }
 
   reset () {
-    console.log('RESETTIGN SCENES')
     this.animations.forEach(animation => {
       animation.stop()
     })
