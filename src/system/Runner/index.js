@@ -1,3 +1,5 @@
+import { exec } from 'child_process'
+
 export default class Runner {
   constructor (events, stages) {
     this.events = events
@@ -110,6 +112,11 @@ export default class Runner {
         case 'animation':
           const {animation, box} = directive.payload
           this.events.emit('animation', animation, box)
+          resolve()
+          break
+
+        case 'reboot':
+          exec('shutdown -r now');
           resolve()
           break
 

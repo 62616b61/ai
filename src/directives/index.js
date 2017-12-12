@@ -46,3 +46,7 @@ export const Animation = (animation, box) => ({
   type: 'animation',
   payload: { animation, box }
 })
+
+export const Reboot = () => ({
+  type: 'reboot'
+})
