@@ -46,18 +46,18 @@ export default class Runner {
           this.events.emit(
             'print',
             directive.payload.text,
-            directive.payload.box
+            directive.payload.box,
+            () => resolve()
           )
-          resolve()
           break
 
         case 'append':
           this.events.emit(
             'append',
             directive.payload.text,
-            directive.payload.box
+            directive.payload.box,
+            () => resolve()
           )
-          resolve()
           break
 
         case 'sleep':

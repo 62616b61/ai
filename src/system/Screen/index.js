@@ -1,9 +1,13 @@
 import blessed from 'blessed'
+
 import layouts from './layouts'
 import sequences from './sequences'
-
 import animations from './animations'
+
+import typewriter from './utils/typewriter'
 import Animator from './animations/animator'
+
+const TYPEWRITE_SPEED = 80
 
 module.exports = class Screen {
   constructor (events) {
@@ -30,16 +34,7 @@ module.exports = class Screen {
       left: 'center',
       width: 100,
       height: 42,
-      tags: true,
-      border: {
-        type: 'line'
-      },
-      style: {
-        fg: 'white',
-        border: {
-          fg: '#f0f0f0'
-        }
-      }
+      tags: true
     })
 
     this.screen.append(this.wrapper)
@@ -52,16 +47,33 @@ module.exports = class Screen {
     this.animations = []
   }
 
-  print (text, box) {
-    if (box) this.layout[box].setContent(text)
-    else this.layout['AISpeech'].setContent(text)
-    this.screen.render()
+  print (text, box, callback) {
+    const b = this.layout[box ? box : 'AISpeech']
+
+    typewriter(
+      text,
+      TYPEWRITE_SPEED,
+      (t) => {
+        b.setContent(t)
+        this.screen.render()
+      },
+      () => callback()
+    )
   }
 
-  append (text, box) {
-    if (box) this.layout[box].pushLine(text)
-    else this.layout['AISpeech'].pushLine(text)
-    this.screen.render()
+  append (text, box, callback) {
+    const b = this.layout[box ? box : 'AISpeech']
+    const lines = b.getLines()
+
+    typewriter(
+      text,
+      TYPEWRITE_SPEED,
+      (t) => {
+        b.setLine(lines.length, t)
+        this.screen.render()
+      },
+      () => callback()
+    )
   }
 
   choice (items, callback) {
@@ -116,8 +128,8 @@ module.exports = class Screen {
 
     e.on('reset', () => this.reset())
 
-    e.on('print', (text, box) => this.print(text, box))
-    e.on('append', (text, box) => this.append(text, box))
+    e.on('print', (t, b, c) => this.print(t, b, c))
+    e.on('append', (t, b, c) => this.append(t, b, c))
     e.on('choice', (items, callback) => this.choice(items, callback))
     e.on('layout', (layout) => this.applyLayout(layout))
     e.on('sequence', (s) => this.startSequence(s))
