@@ -1,5 +1,5 @@
 import {
-  Print, Append, Sleep, DialogueChoice, Branch
+  Print, Append, Sleep, WaitForInput, DialogueChoice, Branch, Act, Stage
 } from 'directives'
 
 export default class {

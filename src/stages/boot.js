@@ -1,5 +1,5 @@
 import {
-  Print, Append, Sleep, Animation
+  Sleep, Animation, Stage
 } from 'directives'
 
 export default class {
@@ -8,11 +8,11 @@ export default class {
     this.layout = 'boot'
 
     this.storyline = {
-
       boot: [
         Animation('boot', 10, 'boot'),
         Sleep(2),
+        Stage('awakening')
       ]
-   }
+    }
   }
 }
