@@ -1,4 +1,5 @@
 import { exec } from 'child_process'
+import fs from 'fs'
 
 export default class Runner {
   constructor (events, stages) {
@@ -102,6 +103,16 @@ export default class Runner {
             action: 'change-stage',
             payload: stage
           })
+          break
+
+        case 'save':
+          fs.writeFile(
+            'save.json',
+            JSON.stringify({'save': 'test'}),
+            'utf8', 
+            () => {
+              resolve()
+            })
           break
 
         case 'sequence':
