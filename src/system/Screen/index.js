@@ -103,8 +103,8 @@ module.exports = class Screen {
     else throw new Error('Unknown sequence!')
   }
 
-  startAnimation (animation, box) {
-    const animator = new Animator(animations[animation], (sprite) => {
+  startAnimation (animation, time, box) {
+    const animator = new Animator(animations[animation], time, (sprite) => {
       this.layout[box].setContent(sprite)
       this.screen.render()
     })
@@ -121,6 +121,6 @@ module.exports = class Screen {
     e.on('choice', (items, callback) => this.choice(items, callback))
     e.on('layout', (layout) => this.applyLayout(layout))
     e.on('sequence', (s) => this.startSequence(s))
-    e.on('animation', (a, b) => this.startAnimation(a, b))
+    e.on('animation', (a,t, b) => this.startAnimation(a, t, b))
   }
 }

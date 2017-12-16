@@ -121,8 +121,8 @@ export default class Runner {
           break
 
         case 'animation':
-          const {animation, box} = directive.payload
-          this.events.emit('animation', animation, box)
+          const {animation, time, box} = directive.payload
+          this.events.emit('animation', animation, time, box)
           resolve()
           break
 

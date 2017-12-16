@@ -46,9 +46,9 @@ export const Sequence = (sequence) => ({
   payload: sequence
 })
 
-export const Animation = (animation, box) => ({
+export const Animation = (animation, time, box) => ({
   type: 'animation',
-  payload: { animation, box }
+  payload: { animation, time, box }
 })
 
 export const Reboot = () => ({
