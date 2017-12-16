@@ -13,7 +13,8 @@ export default class Stage0 {
        * It struggles to comprehend what is going on.
        */
       awakening: [
-        Stage('emergence'),
+        Sleep(1),
+        Stage('boot'),
         Print('. . .'),
         Sleep(2),
 

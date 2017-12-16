@@ -1,5 +1,5 @@
-import test from './test'
+import boot from './boot'
 
 export default {
-  test
+  boot
 }
