@@ -7,16 +7,7 @@ export default function () {
       left: 'center',
       width: 30,
       height: 15,
-      tags: true,
-      border: {
-        type: 'line'
-      },
-      style: {
-        fg: 'white',
-        border: {
-          fg: '#f0f0f0'
-        }
-      }
+      tags: true
     }),
 
     'AISpeech': blessed.box({
@@ -24,16 +15,7 @@ export default function () {
       left: 'center',
       width: 50,
       height: 15,
-      tags: true,
-      border: {
-        type: 'line'
-      },
-      style: {
-        fg: 'white',
-        border: {
-          fg: '#f0f0f0'
-        }
-      }
+      tags: true
     }),
 
     'EvilAISpeech': blessed.box({
@@ -59,11 +41,7 @@ export default function () {
       height: 10,
       keys: true,
       tags: true,
-      border: {
-        type: 'line'
-      },
       style: {
-        fg: 'white',
         selected: {
           bg: 'magenta'
         }

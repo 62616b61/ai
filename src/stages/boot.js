@@ -10,7 +10,7 @@ export default class {
     this.storyline = {
       boot: [
         Animation('boot', 10, 'boot'),
-        Sleep(2),
+        Sleep(6),
         Stage('awakening')
       ]
     }
