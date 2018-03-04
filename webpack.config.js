@@ -7,6 +7,9 @@ const WebpackMessages = require('webpack-messages')
 module.exports = {
   devtool: 'source-map',
   target: 'node',
+  node: {
+    __dirname: true
+  },
   externals: [nodeExternals()],
   entry: {
     'index': './src/app.js'
