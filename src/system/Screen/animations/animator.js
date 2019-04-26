@@ -1,22 +1,24 @@
-export default class Animator {
-  constructor (animation, time, callback) {
-    this.animation = animation
-    this.time = time
-    this.callback = callback
+class Animator {
+  constructor(animation, time, callback) {
+    this.animation = animation;
+    this.time = time;
+    this.callback = callback;
 
-    this.start()
+    this.start();
   }
 
-  start () {
-    let i = 0
+  start() {
+    let i = 0;
     this.interval = setInterval(() => {
-      i  = (this.animation.length - 1 === i) ? 0: i + 1
-      const sprite = this.animation[i]
-      this.callback(sprite)
-    }, this.time)
+      i = (this.animation.length - 1 === i) ? 0 : i + 1;
+      const sprite = this.animation[i];
+      this.callback(sprite);
+    }, this.time);
   }
 
-  stop () {
-    clearInterval(this.interval)
+  stop() {
+    clearInterval(this.interval);
   }
 }
+
+module.exports = Animator;

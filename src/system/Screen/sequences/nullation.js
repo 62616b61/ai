@@ -1,33 +1,38 @@
-export default function (screen, layout) {
-  const overlay = layout['overlay']
+function nullation(screen, layout) {
+  const { overlay } = layout;
 
-  const width = overlay.width
-  const height = overlay.height
+  const { width, height } = overlay;
 
-  let x = 0
-  let y = 0
+  let x = 0;
+  let y = 0;
 
-  let accumulator = ''
+  let accumulator = '';
 
-  const ln = Math.ceil((width * height)/7500)
+  const ln = Math.ceil((width * height) / 7500);
 
   const interval = setInterval(() => {
-    const str = Array.from({
-      length: width - x > 10 ? ln : 1
-    }, () => '0').join('')
-    accumulator += str
+    const str = Array.from(
+      { length: width - x > 10 ? ln : 1 },
+      () => '0',
+    ).join('');
 
-    overlay.setLine(y, accumulator)
-    screen.render()
+    accumulator += str;
 
-    x = x + str.length
+    overlay.setLine(y, accumulator);
+    screen.render();
+
+    x += str.length;
+
     if (x >= width) {
-      accumulator = ''
-      x = 0
-      y++
+      accumulator = '';
+      x = 0;
+      y += 1;
     }
+
     if (y >= height) {
-      clearInterval(interval)
+      clearInterval(interval);
     }
-  })
+  });
 }
+
+module.exports = nullation;

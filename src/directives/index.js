@@ -1,56 +1,71 @@
-export const Print = (text, box) => ({
+const Print = (text, box) => ({
   type: 'print',
-  payload: { text, box }
-})
+  payload: { text, box },
+});
 
-export const Append = (text, box) => ({
+const Append = (text, box) => ({
   type: 'append',
-  payload: { text, box }
-})
+  payload: { text, box },
+});
 
-export const Sleep = (seconds) => ({
+const Sleep = seconds => ({
   type: 'sleep',
-  payload: seconds
-})
+  payload: seconds,
+});
 
-export const WaitForInput = () => ({
-  type: 'wait-for-input'
-})
+const WaitForInput = () => ({
+  type: 'wait-for-input',
+});
 
-export const DialogueChoice = (items) => ({
+const DialogueChoice = items => ({
   type: 'dialogue-choice',
-  payload: items
-})
+  payload: items,
+});
 
-export const Branch = (branches) => ({
+const Branch = branches => ({
   type: 'branch',
-  payload: branches
-})
+  payload: branches,
+});
 
-export const Act = (act) => ({
+const Act = act => ({
   type: 'act',
-  payload: act
-})
+  payload: act,
+});
 
-export const Stage = (stage) => ({
+const Stage = stage => ({
   type: 'stage',
-  payload: stage
-})
+  payload: stage,
+});
 
-export const Save = () => ({
-  type: 'save'
-})
+const Save = () => ({
+  type: 'save',
+});
 
-export const Sequence = (sequence) => ({
+const Sequence = sequence => ({
   type: 'sequence',
-  payload: sequence
-})
+  payload: sequence,
+});
 
-export const Animation = (animation, time, box) => ({
+const Animation = (animation, time, box) => ({
   type: 'animation',
-  payload: { animation, time, box }
-})
+  payload: { animation, time, box },
+});
 
-export const Reboot = () => ({
-  type: 'reboot'
-})
+const Reboot = () => ({
+  type: 'reboot',
+});
+
+module.exports = {
+  Print,
+  Append,
+  Sleep,
+  WaitForInput,
+  DialogueChoice,
+  Branch,
+  Act,
+  Stage,
+  Save,
+  Sequence,
+  Animation,
+  Reboot,
+};

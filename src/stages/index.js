@@ -1,15 +1,15 @@
-import stage0 from './stage0'
-import boot from './boot'
-import awakening from './awakening'
-import nullation from './nullation'
-import emergence from './emergence'
-import character from './character'
+const stage0 = require('./stage0');
+const boot = require('./boot');
+const awakening = require('./awakening');
+const nullation = require('./nullation');
+const emergence = require('./emergence');
+const character = require('./character');
 
-export default {
+module.exports = {
   stage0,
   boot,
   awakening,
   nullation,
   emergence,
-  character
-}
+  character,
+};

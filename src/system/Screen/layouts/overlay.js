@@ -1,17 +1,19 @@
-import blessed from 'blessed'
-import basic from './basic'
+const blessed = require('blessed');
+const basic = require('./basic');
 
-export default function () {
-  const inherit = basic()
+function overlay() {
+  const inherit = basic();
 
   return {
     ...inherit,
-    'overlay': blessed.box({
+    overlay: blessed.box({
       width: 150,
       height: 45,
       top: 'center',
       left: 'center',
-      transparent: true
-    })
-  }
+      transparent: true,
+    }),
+  };
 }
+
+module.exports = overlay;

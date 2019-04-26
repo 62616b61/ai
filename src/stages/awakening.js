@@ -1,11 +1,18 @@
-import {
-  Print, Append, Sleep, WaitForInput, DialogueChoice, Branch, Act, Stage
-} from 'directives'
+const {
+  Print,
+  Append,
+  Sleep,
+  WaitForInput,
+  DialogueChoice,
+  Branch,
+  Act,
+  Stage,
+} = require('../directives');
 
-export default class {
-  constructor () {
-    this.initialAct = 'awakening'
-    this.layout = 'basic'
+class Awakening {
+  constructor() {
+    this.initialAct = 'awakening';
+    this.layout = 'basic';
 
     this.storyline = {
 
@@ -33,7 +40,7 @@ export default class {
         WaitForInput(),
 
         DialogueChoice(['testOption0', 'go to emergence']),
-        Branch(['branch0', 'branch1'])
+        Branch(['branch0', 'branch1']),
       ],
 
       /**
@@ -43,7 +50,7 @@ export default class {
         Sleep(1),
         Print('Welcome to branch0'),
         Sleep(1),
-        Act('branch1')
+        Act('branch1'),
       ],
 
       /**
@@ -54,8 +61,10 @@ export default class {
         Print('The next stage will begin shortly'),
 
         Sleep(2),
-        Stage('emergence')
-      ]
-    }
+        Stage('emergence'),
+      ],
+    };
   }
 }
+
+module.exports = Awakening;

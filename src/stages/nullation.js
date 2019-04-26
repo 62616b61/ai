@@ -1,14 +1,13 @@
-import {
-  Print, Append, Sleep, Sequence
-} from 'directives'
+const {
+  Print, Append, Sleep, Sequence,
+} = require('../directives');
 
-export default class {
-  constructor () {
-    this.initialAct = 'nullation'
-    this.layout = 'overlay'
+class Nullation {
+  constructor() {
+    this.initialAct = 'nullation';
+    this.layout = 'overlay';
 
     this.storyline = {
-
       nullation: [
         Sequence('nullation'),
         Print('WHAT IS THAT'),
@@ -44,7 +43,9 @@ export default class {
 
         Append('DONT DO THAT'),
         Sleep(0.2),
-      ]
-   }
+      ],
+    };
   }
 }
+
+module.exports = Nullation;
