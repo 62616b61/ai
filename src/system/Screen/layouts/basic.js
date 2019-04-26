@@ -1,12 +1,12 @@
-import blessed from 'blessed'
-import common from './common'
+const common = require('./common');
 
-
-export default function () {
-  const inherit = common()
+function basic() {
+  const inherit = common();
 
   return {
-    'AISpeech': inherit['AISpeech'],
-    'DialogueOptions': inherit['DialogueOptions']
-  }
+    AISpeech: inherit.AISpeech,
+    DialogueOptions: inherit.DialogueOptions,
+  };
 }
+
+module.exports = basic;

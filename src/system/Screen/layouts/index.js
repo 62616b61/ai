@@ -1,13 +1,13 @@
-import basic from './basic'
-import boot from './boot'
-import overlay from './overlay'
-import emergence from './emergence'
-import character from './character'
+const basic = require('./basic');
+const boot = require('./boot');
+const overlay = require('./overlay');
+const emergence = require('./emergence');
+const character = require('./character');
 
-export default {
+module.exports = {
   basic,
   boot,
   overlay,
   emergence,
-  character
-}
+  character,
+};

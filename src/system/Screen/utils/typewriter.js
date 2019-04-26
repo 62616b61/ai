@@ -1,18 +1,22 @@
-export default function typewriter (str, time, stepCallback, finalCallback) {
+function typewriter(str, time, stepCallback, finalCallback) {
   const steps = str.split('').reduce((acc, cur) => {
-    if (acc.length) acc.push(acc[acc.length - 1] + cur)
-    else acc.push(cur)
-    return acc
-  }, [])
+    if (acc.length) acc.push(acc[acc.length - 1] + cur);
+    else acc.push(cur);
 
-  let i = 0
+    return acc;
+  }, []);
+
+  let i = 0;
+
   const interval = setInterval(() => {
     if (i === steps.length) {
-      clearInterval(interval)
-      finalCallback()
+      clearInterval(interval);
+      finalCallback();
     } else {
-      stepCallback(steps[i])
-      i++
+      stepCallback(steps[i]);
+      i += 1;
     }
-  }, time)
+  }, time);
 }
+
+module.exports = typewriter;

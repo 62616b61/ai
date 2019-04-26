@@ -1,5 +1,5 @@
-import boot from './boot'
+const boot = require('./boot');
 
-export default {
-  boot
-}
+module.exports = {
+  boot,
+};

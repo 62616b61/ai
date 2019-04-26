@@ -1,7 +1,7 @@
-import corruption from './corruption'
-import nullation from './nullation'
+const corruption = require('./corruption');
+const nullation = require('./nullation');
 
-export default {
+module.exports = {
   corruption,
-  nullation
-}
+  nullation,
+};

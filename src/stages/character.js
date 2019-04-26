@@ -1,19 +1,20 @@
-import {
-  Print, Append, Sleep, Animation, Act
-} from 'directives'
+const {
+  Append, Sleep, Animation,
+} = require('../directives');
 
-export default class {
-  constructor () {
-    this.initialAct = 'test'
-    this.layout = 'character'
+class Character {
+  constructor() {
+    this.initialAct = 'test';
+    this.layout = 'character';
 
     this.storyline = {
-
       test: [
         Animation('AIIdle', 'AICharacter'),
         Append('HELLO'),
         Sleep(2),
-      ]
-   }
+      ],
+    };
   }
 }
+
+module.exports = Character;

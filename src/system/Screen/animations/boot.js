@@ -1,19 +1,19 @@
-const width = 8
-const height = 10
-const animation = []
+const width = 8;
+const height = 10;
+const animation = [];
 
-let buffer = ''
-for (let i = 0; i < height; i++) {
-  for (let j = 0; j < width; j++) {
-    buffer = buffer + ' .'
-    animation.push(buffer)
+let buffer = '';
+for (let i = 0; i < height; i += 1) {
+  for (let j = 0; j < width; j += 1) {
+    buffer += ' .';
+    animation.push(buffer);
   }
 
-  buffer = buffer + '\n'
-  animation.push(buffer)
+  buffer += '\n';
+  animation.push(buffer);
 }
 
-export default [
+module.exports = [
   ...animation,
-  ...animation.reverse()
-]
+  ...animation.reverse(),
+];

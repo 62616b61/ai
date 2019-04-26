@@ -1,17 +1,17 @@
-import blessed from 'blessed'
-import common from './common'
+const blessed = require('blessed');
+const common = require('./common');
 
-export default function () {
-  const inherit = common()
+function emergence() {
+  const inherit = common();
 
   return {
     ...inherit,
-    'overlay': blessed.box({
+    overlay: blessed.box({
       width: 150,
       height: 42,
       top: 'center',
       left: 'center',
-      transparent: true
+      transparent: true,
     }),
 
     /**
@@ -23,7 +23,7 @@ export default function () {
       width: 16,
       height: 12,
       top: 1,
-      left: 'center'
+      left: 'center',
     }),
 
     /**
@@ -35,7 +35,7 @@ export default function () {
       width: 16,
       height: 12,
       top: 17,
-      left: 10
+      left: 10,
     }),
     'left-eye-2': blessed.box({
       bg: 'white',
@@ -43,7 +43,7 @@ export default function () {
       width: 8,
       height: 12,
       top: 13,
-      left: 2
+      left: 2,
     }),
     'left-eye-3': blessed.box({
       bg: 'white',
@@ -51,7 +51,7 @@ export default function () {
       width: 8,
       height: 4,
       top: 21,
-      left: 26
+      left: 26,
     }),
 
     'left-eye-upper-1': blessed.box({
@@ -60,7 +60,7 @@ export default function () {
       width: 8,
       height: 4,
       top: 9,
-      left: 18
+      left: 18,
     }),
     'left-eye-upper-2': blessed.box({
       bg: 'white',
@@ -68,7 +68,7 @@ export default function () {
       width: 8,
       height: 8,
       top: 5,
-      left: 10
+      left: 10,
     }),
 
     /**
@@ -80,7 +80,7 @@ export default function () {
       width: 16,
       height: 12,
       top: 17,
-      right: 10
+      right: 10,
     }),
     'right-eye-2': blessed.box({
       bg: 'white',
@@ -88,7 +88,7 @@ export default function () {
       width: 8,
       height: 12,
       top: 13,
-      right: 2
+      right: 2,
     }),
     'right-eye-3': blessed.box({
       bg: 'white',
@@ -96,7 +96,7 @@ export default function () {
       width: 8,
       height: 4,
       top: 21,
-      right: 26
+      right: 26,
     }),
 
     'right-eye-upper-1': blessed.box({
@@ -105,7 +105,7 @@ export default function () {
       width: 8,
       height: 4,
       top: 9,
-      right: 18
+      right: 18,
     }),
     'right-eye-upper-2': blessed.box({
       bg: 'white',
@@ -113,7 +113,7 @@ export default function () {
       width: 8,
       height: 8,
       top: 5,
-      right: 10
+      right: 10,
     }),
 
 
@@ -127,7 +127,7 @@ export default function () {
       width: 16,
       height: 4,
       bottom: 6,
-      left: 'center'
+      left: 'center',
     }),
     'mouth-2': blessed.box({
       bg: 'white',
@@ -135,7 +135,7 @@ export default function () {
       width: 8,
       height: 4,
       bottom: 2,
-      left: 34
+      left: 34,
     }),
     'mouth-3': blessed.box({
       bg: 'white',
@@ -143,7 +143,7 @@ export default function () {
       width: 8,
       height: 4,
       bottom: 2,
-      right: 34
+      right: 34,
     }),
     'mouth-4': blessed.box({
       bg: 'white',
@@ -151,7 +151,7 @@ export default function () {
       width: 8,
       height: 4,
       bottom: 6,
-      left: 26
+      left: 26,
     }),
     'mouth-5': blessed.box({
       bg: 'white',
@@ -159,7 +159,9 @@ export default function () {
       width: 8,
       height: 4,
       bottom: 6,
-      right: 26
-    })
-  }
+      right: 26,
+    }),
+  };
 }
+
+module.exports = emergence;

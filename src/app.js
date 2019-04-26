@@ -1,17 +1,14 @@
-import EventEmitter from 'events'
+const EventEmitter = require('events');
 
-import stages from './stages'
-import Runner from './system/Runner'
-import Screen from './system/Screen'
+const stages = require('./stages');
+const Runner = require('./system/Runner');
+const Screen = require('./system/Screen');
 
-export default class App {
-  constructor () {
-    this.events = new EventEmitter()
+function App() {
+  const events = new EventEmitter();
 
-    this.screen = new Screen(this.events)
-    this.runner = new Runner(this.events, stages)
-
-  }
+  const screen = new Screen(events);
+  const runner = new Runner(events, stages);
 }
 
-new App()
+App();

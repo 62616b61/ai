@@ -1,13 +1,15 @@
-import blessed from 'blessed'
+const blessed = require('blessed');
 
-export default function () {
+function boot() {
   return {
-    'boot': blessed.box({
+    boot: blessed.box({
       top: 'center',
       left: 'center',
       width: 10,
       height: 15,
-      tags: true
-    })
-  }
+      tags: true,
+    }),
+  };
 }
+
+module.exports = boot;
